@@ -1,9 +1,9 @@
 import types
 from itertools import chain
-from typing import List, Iterator, Any
+from typing import List, Any, Generator
 
 
-def flat_generator(list_of_lists: List[List]) -> Iterator[Any]:
+def flat_generator(list_of_lists: List[List]) -> Generator[Any]:
     yield from chain.from_iterable(list_of_lists)
 
 

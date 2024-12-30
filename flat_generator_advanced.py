@@ -1,8 +1,8 @@
 import types
-from typing import Iterable, Iterator, Any, List
+from typing import Iterable, Any, List, Generator
 
 
-def flat_generator(list_of_list: List[List]) -> Iterator[Any]:
+def flat_generator(list_of_list: List[List]) -> Generator[Any]:
     for item in list_of_list:
         if isinstance(item, Iterable) and not isinstance(item, str):
             yield from flat_generator(item)
