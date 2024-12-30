@@ -1,16 +1,17 @@
 from itertools import chain
+from typing import List, Iterator, Any
 
 
 class FlatIterator:
 
-    def __init__(self, list_of_list):
+    def __init__(self, list_of_list: List[List]) -> None:
         self.flatten_list = list(chain.from_iterable(list_of_list))
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         self.cursor = -1
         return self
 
-    def __next__(self):
+    def __next__(self) -> Any:
         self.cursor += 1
         if self.cursor >= len(self.flatten_list):
             raise StopIteration

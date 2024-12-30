@@ -1,16 +1,16 @@
-from typing import Iterable
+from typing import Iterable, Any, List, Iterator
 
 
 class FlatIterator:
 
-    def __init__(self, list_of_list):
+    def __init__(self, list_of_list: List[List]):
         self.flatten_list = flat(list_of_list)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         self.cursor = -1
         return self
 
-    def __next__(self):
+    def __next__(self) -> Any:
         self.cursor += 1
         if self.cursor >= len(self.flatten_list):
             raise StopIteration
@@ -18,7 +18,7 @@ class FlatIterator:
             return self.flatten_list[self.cursor]
 
 
-def flat(element):
+def flat(element: Any) -> List[Any]:
     if isinstance(element, Iterable) and not isinstance(element, str):
         return [a for i in element for a in flat(i)]
     else:
